@@ -1,15 +1,19 @@
 use glob::glob;
 use std::path::Path;
 use std::path::PathBuf;
+use std::fs;
+use std::process::Command;
 
 fn main() {
-    // NOTE: This command is related to build.sh
-    let command = "cd ./src/cuda && ./build.sh && cd -";
-    std::process::Command::new("sh")
+    let build_dir = "./src/cuda/build/";
+    fs::create_dir(&build_dir);
+
+    let status = Command::new("sh")
         .arg("-c")
-        .arg(command)
-        .output()
-        .unwrap();
+        .arg("cmake .. && make -j12")
+        .current_dir(build_dir)
+        .status()
+        .expect("Failed to execute command");
 
     let cuda_build_dir_relative = "./src/cuda/build/core";
     let current_dir = std::env::current_dir().expect("Failed to get current directory");
