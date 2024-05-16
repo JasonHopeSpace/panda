@@ -1,0 +1,25 @@
+[package]
+name = "panda-halo2-zal"
+version = "0.1.0"
+edition = "2021"
+
+authors = ["Mamy André-Ratsimbazafy", "@JasonHopeSpace"]
+license = "MIT/Apache-2.0"
+repository = "https://github.com/JasonHopeSpace/panda"
+
+[dependencies]
+panda = { path = "../panda" }
+halo2_middleware = { git = 'https://github.com/privacy-scaling-explorations/halo2' }
+ark-std = "0.3"
+
+[dev-dependencies]
+rand_core = { version = "0.6", default-features = false }
+
+# Benchmark-only dependencies
+criterion = { version = "0.3", features = ["html_reports"] }
+rand_xorshift = "0.3"
+rayon = "1.8"
+
+[[bench]]
+name = "msm"
+harness = false
