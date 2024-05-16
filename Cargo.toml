@@ -1,5 +1,6 @@
 [workspace]
 members = [
     "panda",
+    "panda-halo2-zal",
 ]
 resolver = "2"
