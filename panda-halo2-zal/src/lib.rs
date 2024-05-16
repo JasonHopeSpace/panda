@@ -50,8 +50,8 @@ impl<C: CurveAffine> MsmAccel<C> for PandaEngine {
 
     // Caching API
     // -------------------------------------------------
-    type CoeffsDescriptor<'c> = GPUMsmCoeffsDesc<'c, C>;
-    type BaseDescriptor<'b> = GPUMsmBaseDesc<'b, C>;
+    type CoeffsDescriptor<'c> = PandaMsmCoeffsDesc<'c, C>;
+    type BaseDescriptor<'b> = PandaMsmBaseDesc<'b, C>;
 
     fn get_coeffs_descriptor<'c>(&self, coeffs: &'c [C::Scalar]) -> Self::CoeffsDescriptor<'c> {
         let mut binding = GLOBAL_DEVICE_MANAGER.lock().unwrap();
